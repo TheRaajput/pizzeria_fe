@@ -1,6 +1,4 @@
-import { useQuery } from "react-query";
 import { Order } from "../../../types/order";
-import axiosInstance from "../../../utils/axios";
 interface Props {
   ordersData?: Order;
 }
@@ -18,30 +16,36 @@ const OrderDetails = ({ ordersData }: Props) => {
           <p className="text-lg font-bold lg:text-2xl">Order Items</p>
           {ordersData?.line_items
             ? ordersData?.line_items.map((order_items) => (
-                <div
-                  className="flex text-sm lg:text-md"
-                  key={order_items._id}
-                >
+                <div className="flex text-sm lg:text-md" key={order_items._id}>
                   <p>{order_items.name}</p>
                   <p>{order_items.quantity}</p>
                 </div>
               ))
             : ""}
-          {ordersData?.is_custom && (
+
+          {ordersData && (
             <p className="text-sm break-words lg:text-md">
-              {ordersData.toppings.pizza_bases.map((x) => x.name).join(", ")}
+              {ordersData?.toppings.pizza_bases &&
+                ordersData?.toppings.pizza_bases.map((x) => x.name).join(", ")}
               ,&nbsp;
-              {ordersData.toppings.sauces.map((x) => x.name).join(", ")},&nbsp;
-              {ordersData.toppings.cheese.map((x) => x.name).join(", ")},&nbsp;
-              {ordersData.toppings.vegs.map((x) => x.name).join(", ")},&nbsp;
-              {ordersData.toppings.meat.map((x) => x.name).join(", ")}
+              {ordersData?.toppings.sauces &&
+                ordersData?.toppings.sauces.map((x) => x.name).join(", ")}
+              ,&nbsp;
+              {ordersData?.toppings.cheese &&
+                ordersData?.toppings.cheese.map((x) => x.name).join(", ")}
+              ,&nbsp;
+              {ordersData?.toppings.vegs &&
+                ordersData?.toppings.vegs.map((x) => x.name).join(", ")}
+              ,&nbsp;
+              {ordersData?.toppings.meat &&
+                ordersData?.toppings.meat.map((x) => x.name).join(", ")}
             </p>
           )}
         </div>
       </div>
-      <div className="flex flex-col space-y-10">
+      <div className="flex flex-col items-center justify-center space-y-10">
         <span>cost</span>
-        <span>{ordersData?.price ? ordersData?.price : ""}</span>
+        <span>{ordersData?.price ? ordersData?.price : "0"}</span>
       </div>
       <div>{ordersData?.status}</div>
     </div>
