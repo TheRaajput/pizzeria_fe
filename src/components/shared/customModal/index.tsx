@@ -1,17 +1,27 @@
 import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import classNames from "classnames";
 
 interface Props {
   title: string;
   buttonText: string;
   children: JSX.Element | JSX.Element[];
+  classToOverride?: string;
 }
-const CustomModal = ({ title, buttonText, children }: Props) => {
+const CustomModal = ({
+  title,
+  buttonText,
+  children,
+  classToOverride,
+}: Props) => {
   let [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <button
-        className="p-2 mb-10 font-bold text-white bg-gray-800 rounded-xl"
+        className={classNames(
+          "p-2 mb-10 font-bold text-white bg-gray-800 rounded-xl",
+          classToOverride
+        )}
         onClick={() => setIsOpen(true)}
       >
         {buttonText}

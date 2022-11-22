@@ -11,6 +11,7 @@ import { useNotifications } from "reapop";
 import { useDispatch } from "react-redux";
 import { accesToken } from "../../../redux/slices/Auth";
 import { getUserData } from "../../../redux/slices/users";
+import ForgotPassword from "../forgotPassword";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -70,12 +71,6 @@ const LoginForm = () => {
           onChange={handleChange}
           type="password"
         />
-        <Link
-          to="/verify-password"
-          className="text-sm text-center text-green-400 hover:text-green-500"
-        >
-          Forgot your password?
-        </Link>
         <button
           type="submit"
           disabled={
@@ -93,6 +88,7 @@ const LoginForm = () => {
         >
           Create Account
         </Link>
+        <ForgotPassword />
       </form>
     </div>
   );

@@ -1,7 +1,8 @@
 import axios from "axios";
-const prod_url = "https://pizzeria-6kcsxlo93-theraajput.vercel.app";
+import { API_URLS } from "../config/API_URLS";
+
 const axiosInstance = axios.create({
-  baseURL: prod_url,
+  baseURL: API_URLS.base_url,
 });
 
 export default axiosInstance;

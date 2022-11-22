@@ -3,7 +3,6 @@ import Home from "../../pages/home";
 import LogIn from "../../pages/logIn";
 import OrderHome from "../../pages/Orders";
 import Register from "../../pages/register";
-import VerifyPassword from "../../pages/verifyPassword";
 
 export const appRoutes = [
   {
@@ -21,11 +20,6 @@ export const appRoutes = [
     id: "signUp",
     path: "/register",
     component: <Register />,
-  },
-  {
-    id: "verifyPassword",
-    path: "/verify-password",
-    component: <VerifyPassword />,
   },
   {
     id: "admin",
