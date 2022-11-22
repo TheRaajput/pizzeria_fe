@@ -1,8 +1,25 @@
+import { useQuery } from "react-query";
+import { API_URLS } from "../../../config/API_URLS";
 import { Order } from "../../../types/order";
+import axiosInstance from "../../../utils/axios";
 interface Props {
   ordersData?: Order;
 }
 const OrderDetails = ({ ordersData }: Props) => {
+  const { data } = useQuery(
+    ["order-status", ordersData?._id],
+    ({ signal }) =>
+      axiosInstance.get(
+        API_URLS.base_url + "/v1/order/order-status/" + ordersData?._id,
+        { signal }
+      ),
+    {
+      onSuccess: (res: any) => {
+        console.log(res);
+      },
+      refetchInterval: (data: any) => (!data ? 5000 : false),
+    }
+  );
   return (
     <div className="flex items-center justify-between w-full p-6 mb-2 text-white bg-gray-700 rounded-lg">
       <div className="w-1/4">
@@ -47,7 +64,7 @@ const OrderDetails = ({ ordersData }: Props) => {
         <span>cost</span>
         <span>{ordersData?.price ? ordersData?.price : "0"}</span>
       </div>
-      <div>{ordersData?.status}</div>
+      <div>{data?.data ? data?.data : ordersData?.status}</div>
     </div>
   );
 };
