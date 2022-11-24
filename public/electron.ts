@@ -26,7 +26,7 @@ const createWindow = () => {
       .then((name) => console.log(`Added Extension:  ${name}`))
       .catch((err) => console.log("An error occurred: ", err))
       .finally(() => {
-        win.webContents.openDevTools();
+        screen.webContents.openDevTools();
       });
   });
 };

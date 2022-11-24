@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { NotificationsProvider } from "reapop";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <NotificationsProvider>
-      <BrowserRouter>
+      <HashRouter>
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
@@ -25,7 +25,7 @@ root.render(
             </PersistGate>
           </Provider>
         </QueryClientProvider>
-      </BrowserRouter>
+      </HashRouter>
     </NotificationsProvider>
   </React.StrictMode>
 );
